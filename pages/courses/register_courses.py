@@ -1,0 +1,8 @@
+
+class RegisterCoursePage():
+
+    pass
+
+
+
+
