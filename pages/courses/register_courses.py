@@ -1,5 +1,5 @@
 
-class RegisterCoursePage():
+class Register_CoursesPage():
 
     pass
 
