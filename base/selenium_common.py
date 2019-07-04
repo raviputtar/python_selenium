@@ -2,6 +2,7 @@ import time
 import os
 
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 class SeleniumCommon():
     def __init__(self,driver):
         self.driver=driver
@@ -54,3 +55,6 @@ class SeleniumCommon():
             self.driver.save_screenshot(destinationfilename)
         except:
             print("screenshot could not be taken")
+
+    def scroll_to_bottom(self):
+        self.driver.find_element_by_tag_name('body').send_keys(Keys.END)
