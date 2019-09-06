@@ -58,3 +58,12 @@ class SeleniumCommon():
 
     def scroll_to_bottom(self):
         self.driver.find_element_by_tag_name('body').send_keys(Keys.END)
+
+    def switch_frame(self,frame_ref):
+        self.driver.switch_to.frame(frame_ref)
+
+    def switch_frame_default(self):
+        self.driver.switch_to.default_content()
+
+
+
