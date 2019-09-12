@@ -27,11 +27,13 @@ class RegisterCourseTests(unittest.TestCase):
         self.courses.click_javascript_course()
         sleep(3)
         self.javas_enroll.click_enroll_button_top()
-        sleep(3)
+        sleep(2)
         self.checkout.scroll_to_bottom()
+        sleep(2)
         self.checkout.enter_creditcard_details("cc",12234442,"22/2",233,"201301")
-
-        print("we have done it ")
+        self.checkout.click_agree_to_terms()
+        sleep(3)
+        print("button result is:",self.checkout.check_confrim_button_Disabled())
 
     # def tearDown(self):
     #     self.driver.quit()

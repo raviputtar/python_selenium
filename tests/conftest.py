@@ -10,8 +10,7 @@ def OneTimeSetup():
     driver.get(baseurl)
 
     yield driver
-    print("quitting driver")
-    driver.quit()
+
 
 
 @pytest.fixture()

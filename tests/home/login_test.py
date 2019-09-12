@@ -67,7 +67,7 @@ class logintest(unittest.TestCase):
     #     self.lp.takeScreenshot("invalid_loginpage")
 
     def tearDown(self):
-        self.driver.quit()
+        #self.driver.quit()
 
 
 
