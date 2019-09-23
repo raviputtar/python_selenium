@@ -1,0 +1,4 @@
+Coursename,cardnum,expdate,cvc,zip
+"javascript", "cc",12345678,"5/22", 234, "201301"
+"python_scratch","cc",12345678,"1/20",388,"101202"
+"selenium_python","cc",12345678,"2/23",224,"111112"
