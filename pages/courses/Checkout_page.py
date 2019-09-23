@@ -1,6 +1,9 @@
 from base.selenium_common import SeleniumCommon
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import *
 
 class Checkout(SeleniumCommon):
 
@@ -37,6 +40,11 @@ class Checkout(SeleniumCommon):
     cvc_frame='__privateStripeFrame10'
     zip_frame='__privateStripeFrame11'
 
+
+    def waitfor(self):
+        wait=WebDriverWait(self.driver,10,poll_frequency=1,ignored_exceptions=[ElementNotVisibleException,NoSuchElementException,ElementNotSelectableException])
+        element=wait.until(EC.element_to_be_clickable((By.XPATH,self.dropdown_creditcard_method_locator)))
+        element.click()
 
 
     def select_payment_method(self,method):
