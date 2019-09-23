@@ -61,13 +61,8 @@ class SeleniumCommon():
     def switch_frame(self,frame_ref):
         self.driver.switch_to.frame(frame_ref)
 
-<<<<<<< HEAD
     def switch_frame_default(self):
         self.driver.switch_to.default_content()
 
-
-
-=======
     def switch_to_main(self):
         self.driver.switch_to.default_content()
->>>>>>> f14b922b77c4ed0e36f438a796ad953dc436a3a7
