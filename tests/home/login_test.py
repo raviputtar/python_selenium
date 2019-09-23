@@ -33,8 +33,6 @@ class logintest(unittest.TestCase):
 
 
     def setUp(self):
-        wp=webdriverProvider()
-        self.driver=wp.getwebdriver()
         self.lp=loginPage()
         self.hp=Homepage()
 
