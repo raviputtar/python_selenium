@@ -20,6 +20,7 @@ class Checkout(SeleniumCommon):
     postal_code_locator="// div[ @ id = 'root'] / form // input[ @ name = 'postal']"
     country_dropdown_locator_id="country_code_credit_card-cc"
 
+<<<<<<< HEAD
     cardno_frame_name="__privateStripeFrame8"
     expdate_frame_name="__privateStripeFrame9"
     cvc_frame_name="__privateStripeFrame10"
@@ -32,6 +33,18 @@ class Checkout(SeleniumCommon):
 
     def click_creditcard(self):
         self.click_element(By.XPATH,self.dropdown_creditcard_method_locator)
+=======
+    _credit_card_frame='__privateStripeFrame8'
+    _Expdate_frame='__privateStripeFrame9'
+    cvc_frame='__privateStripeFrame10'
+    zip_frame='__privateStripeFrame11'
+
+
+
+    def select_payment_method(self,method):
+
+        myelement=self.getelement(By.XPATH,self.dropdown_locator)
+>>>>>>> f14b922b77c4ed0e36f438a796ad953dc436a3a7
 
     def select_payment_method(self,method):
         self.click_dropdown_button()
@@ -41,8 +54,15 @@ class Checkout(SeleniumCommon):
             self.click_paypal()
 
 
+<<<<<<< HEAD
     def click_dropdown_button(self):
         self.click_element(By.XPATH,self.dropdown_button_locator)
+=======
+    def enter_cardnumber(self,cardno):
+        self.switch_frame(self._credit_card_frame)
+        self.element_sendkeys("23456",By.XPATH,self.cardnumber_locator)
+        self.switch_to_main()
+>>>>>>> f14b922b77c4ed0e36f438a796ad953dc436a3a7
 
     def enter_cardnumber(self,cardno):
         self.switch_frame(self.cardno_frame_name)
@@ -50,6 +70,7 @@ class Checkout(SeleniumCommon):
         self.switch_frame_default()
 
     def enter_expiration_date(self,expdate):
+<<<<<<< HEAD
         self.switch_frame(self.expdate_frame_name)
         self.element_sendkeys(expdate,By.XPATH,self.expdate_locator)
         self.switch_frame_default()
@@ -74,9 +95,24 @@ class Checkout(SeleniumCommon):
         else:
             return True
 
+=======
+        self.switch_frame(self._Expdate_frame)
+        self.element_sendkeys(expdate,By.XPATH,self.expdate_locator)
+        self.switch_to_main()
+
+    def enter_cvc(self,cvc):
+        self.switch_frame(self.cvc_frame)
+        self.element_sendkeys(cvc,By.XPATH,self.cvc)
+        self.switch_to_main()
+
+    def enter_postal(self,postal):
+        self.switch_frame(self.zip_frame)
+        self.element_sendkeys(postal,By.XPATH,self.postal_code_locator)
+        self.switch_to_main()
+>>>>>>> f14b922b77c4ed0e36f438a796ad953dc436a3a7
 
     def enter_creditcard_details(self,method,cardnum,expdate,cvc,postal):
-        self.select_payment_method(method)
+        print("method is:",method)
         self.enter_cardnumber(cardnum)
         self.enter_expiration_date(expdate)
         self.enter_cvc(cvc)

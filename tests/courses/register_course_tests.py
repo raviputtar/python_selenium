@@ -8,8 +8,14 @@ import unittest
 import pytest
 from base.webdriverProvider import webdriverProvider
 from time import sleep
+from ddt import ddt, unpack, data
+from utility.getCSVdata import getCSVdata
 
+<<<<<<< HEAD
 
+=======
+@ddt
+>>>>>>> f14b922b77c4ed0e36f438a796ad953dc436a3a7
 class RegisterCourseTests(unittest.TestCase):
 
     def setUp(self):
@@ -24,8 +30,11 @@ class RegisterCourseTests(unittest.TestCase):
         self.lp.driver.maximize_window()
         self.lp.driver.implicitly_wait(10)
 
-    def test_click_one_Course(self):
+    @data(*getCSVdata(r'C:\Users\ravin\PycharmProjects\python_selenium\testdata\testdata.csv'))
+    @unpack
+    def test_click_one_Course(self, coursename ,payment_method, ccNum, ccexp, ccCvc, zip):
         self.lp.valid_login("ravinder267@gmail.com","ninja77")
+<<<<<<< HEAD
         self.courses.click_javascript_course()
         self.javas_enroll.click_enroll_button_top()
         self.checkout.scroll_to_bottom()
@@ -34,6 +43,21 @@ class RegisterCourseTests(unittest.TestCase):
         self.checkout.click_agree_to_terms()
         print("button result is:",self.checkout.check_confrim_button_Disabled())
         self.lp.takeScreenshot()
+=======
+        if coursename == "javascript":
+            self.courses.click_javascript_course()
+        elif coursename == "python_scratch":
+            self.courses.click_python_Scratch_course()
+        elif coursename == "selenium_python":
+            self.courses.click_selenium_python_course()
+        else:
+            print("no course")
+        sleep(3)
+        self.javas_enroll.click_enroll_button_top()
+        sleep(3)
+        #self.checkout.scroll_to_bottom()
+        self.checkout.enter_creditcard_details(payment_method,ccNum,ccexp,ccCvc,zip)
+>>>>>>> f14b922b77c4ed0e36f438a796ad953dc436a3a7
 
     def tearDown(self):
         loginPage.driver.quit()
