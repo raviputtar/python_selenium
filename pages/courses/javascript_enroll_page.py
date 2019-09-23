@@ -8,4 +8,3 @@ class javascript_enroll(SeleniumCommon):
 
     def click_enroll_button_top(self):
         self.click_element(By.XPATH,self.enroll_button_top_locator)
-
