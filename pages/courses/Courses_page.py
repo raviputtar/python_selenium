@@ -2,9 +2,6 @@ from base.selenium_common import SeleniumCommon
 from selenium.webdriver.common.by import By
 
 class Courses(SeleniumCommon):
-    def __init__(self,driver):
-        super().__init__(driver)
-        self.driver=driver
 
     javascript_course_locator="//div[contains(text(),'JavaScript for beginners')]"
     selenium_python_course_locator="//div[contains(text(),'Selenium WebDriver With Python 3.x')]"

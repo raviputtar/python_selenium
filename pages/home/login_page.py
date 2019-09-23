@@ -3,9 +3,6 @@ from base.selenium_common import SeleniumCommon
 
 
 class loginPage(SeleniumCommon):
-    def __init__(self,driver):
-        super().__init__(driver)
-        self.driver=driver
 
     #locators
     login_link="Login"

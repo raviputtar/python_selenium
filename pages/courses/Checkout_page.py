@@ -4,9 +4,6 @@ from selenium.webdriver.common.by import By
 
 class Checkout(SeleniumCommon):
 
-    def __init__(self,driver):
-        super().__init__(driver)
-        driver=self.driver
 
 
     dropdown_button_locator="//button[@class='dropbtn minimal']"

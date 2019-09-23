@@ -2,9 +2,6 @@ from selenium.webdriver.common.by import By
 from base.selenium_common import SeleniumCommon
 
 class Homepage(SeleniumCommon):
-    def __init__(self,driver):
-        super().__init__(driver)
-        self.driver=driver
 
     #locators
 

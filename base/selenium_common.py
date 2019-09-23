@@ -4,9 +4,8 @@ import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 class SeleniumCommon():
-    def __init__(self,driver):
-        self.driver=driver
 
+    driver = webdriver.Chrome(executable_path=r"C:\Users\rsingh\PycharmProjects\automationProject\webdrivers\chromedriver_win32\chromedriver.exe")
 
     def is_element_present(self,locator_type,locator):
         myelement=self.driver.find_element(locator_type,locator)

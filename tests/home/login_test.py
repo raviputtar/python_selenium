@@ -35,8 +35,8 @@ class logintest(unittest.TestCase):
     def setUp(self):
         wp=webdriverProvider()
         self.driver=wp.getwebdriver()
-        self.lp=loginPage(self.driver)
-        self.hp=Homepage(self.driver)
+        self.lp=loginPage()
+        self.hp=Homepage()
 
         baseurl = "https://letskodeit.teachable.com/"
         self.driver.get(baseurl)
