@@ -27,6 +27,8 @@ class RegisterCourseTests(unittest.TestCase):
         self.lp.driver.maximize_window()
         self.lp.driver.implicitly_wait(10)
 
+
+    @unittest.skip("demo skip")
     @data(*getCSVdata(r'C:\Users\rsingh\PycharmProjects\automationProject\testdata\testdata.csv'))
     @unpack
     def test_click_one_Course(self, coursename ,payment_method, ccNum, ccexp, ccCvc, zip):
@@ -46,6 +48,16 @@ class RegisterCourseTests(unittest.TestCase):
         self.checkout.enter_creditcard_details(payment_method,ccNum,ccexp,ccCvc,zip)
         sleep(3)
         self.lp.takeScreenshot("screenshot taken")
+
+    def test_another_click(self):
+        self.lp.valid_login("ravinder267@gmail.com", "ninja77")
+        self.courses.click_python_Scratch_course()
+        self.javas_enroll.click_enroll_button_top()
+        self.checkout.scroll_to_bottom()
+        self.checkout.waitfor()
+        self.checkout.enter_creditcard_details("cc",232888888,"23/2",234,201301)
+        self.checkout.click_agree_to_terms()
+
 
 
     def tearDown(self):
