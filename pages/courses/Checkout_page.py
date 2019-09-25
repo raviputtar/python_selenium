@@ -32,6 +32,8 @@ class Checkout(SeleniumCommon):
     _cvc_frame = '__privateStripeFrame10'
     _zip_frame = '__privateStripeFrame11'
 
+    enroll_confirm_button_locator="//span[@class='spc__button-text'][contains(text(),'Enroll in Course')]"
+
     def click_paypal(self):
         self.click_element(By.XPATH,self.dropdown_paypal_method_locator)
 
@@ -103,19 +105,6 @@ class Checkout(SeleniumCommon):
         else:
             return True
 
-        self.switch_frame(self._Expdate_frame)
-        self.element_sendkeys(expdate,By.XPATH,self.expdate_locator)
-        self.switch_to_main()
-
-    def enter_cvc(self,cvc):
-        self.switch_frame(self.cvc_frame)
-        self.element_sendkeys(cvc,By.XPATH,self.cvc)
-        self.switch_to_main()
-
-    def enter_postal(self,postal):
-        self.switch_frame(self.zip_frame)
-        self.element_sendkeys(postal,By.XPATH,self.postal_code_locator)
-        self.switch_to_main()
 
 
     def enter_creditcard_details(self,method,cardnum,expdate,cvc,postal):
@@ -124,3 +113,6 @@ class Checkout(SeleniumCommon):
         self.enter_expiration_date(expdate)
         self.enter_cvc(cvc)
         self.enter_postal(postal)
+
+    def click_enroll_confirm_button(self):
+        self.click_element(By.XPATH,self.enroll_confirm_button_locator)
