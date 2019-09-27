@@ -32,7 +32,9 @@ class Checkout(SeleniumCommon):
     _cvc_frame = '__privateStripeFrame10'
     _zip_frame = '__privateStripeFrame11'
 
-    enroll_confirm_button_locator="//span[@class='spc__button-text'][contains(text(),'Enroll in Course')]"
+    enroll_confirm_button_locator="//button[@id='confirm-purchase']"
+
+    card_decline_message_locator="//div[@class='payment-error-box']//span[contains(text(),'The card was declined.')]"
 
     def click_paypal(self):
         self.click_element(By.XPATH,self.dropdown_paypal_method_locator)
@@ -55,13 +57,9 @@ class Checkout(SeleniumCommon):
         element.click()
 
 
-
-
-
-
     def select_payment_method(self,method):
-
         myelement=self.getelement(By.XPATH,self.dropdown_locator)
+
 
     def select_payment_method(self,method):
         self.click_dropdown_button()
@@ -77,7 +75,8 @@ class Checkout(SeleniumCommon):
 
     def enter_cardnumber(self,cardno):
         self.switch_frame(self._credit_card_frame)
-        self.element_sendkeys(cardno,By.XPATH,self.cardnumber_locator)
+        self.click_element(By.XPATH,self.cardnumber_locator)
+        self.element_sendkeys(str(cardno),By.XPATH,self.cardnumber_locator)
         self.switch_frame_default()
 
     def enter_expiration_date(self,expdate):
@@ -109,10 +108,31 @@ class Checkout(SeleniumCommon):
 
     def enter_creditcard_details(self,method,cardnum,expdate,cvc,postal):
         print("method is:",method)
-        self.enter_cardnumber(cardnum)
+        mynymlist=[]
+        mylist=str(cardnum).split()
+        for i in mylist:
+            self.enter_cardnumber(i)
         self.enter_expiration_date(expdate)
         self.enter_cvc(cvc)
         self.enter_postal(postal)
 
+    def wait_for_enroll_button(self):
+        try:
+            Mybuttonwait=WebDriverWait(self.driver,10,poll_frequency=2,ignored_exceptions=[ElementNotVisibleException,ElementNotInteractableException,ElementClickInterceptedException,ElementNotSelectableException])
+            button_element=Mybuttonwait.until(EC.presence_of_element_located((By.XPATH,self.enroll_confirm_button_locator)))
+        except:
+            print("exception found")
+        else:
+            print("element found :",button_element)
+
     def click_enroll_confirm_button(self):
         self.click_element(By.XPATH,self.enroll_confirm_button_locator)
+
+    def check_card_Declined_message(self):
+        try:
+            wait=WebDriverWait(self.driver,12,poll_frequency=1,ignored_exceptions=[ElementNotSelectableException,ElementNotVisibleException,ElementNotInteractableException])
+            message_element=wait.until(EC.visibility_of_element_located((By.XPATH,self.card_decline_message_locator)))
+        except:
+            print("card declined message is not appearing")
+        else:
+            print("element found: and its text is:",message_element.text)
