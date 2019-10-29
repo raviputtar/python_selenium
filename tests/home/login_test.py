@@ -33,19 +33,19 @@ class logintest(unittest.TestCase):
 
 
     def setUp(self):
-        wp=webdriverProvider()
-        self.driver=wp.getwebdriver()
-        self.lp=loginPage(self.driver)
-        self.hp=Homepage(self.driver)
+        self.lp=loginPage()
+        self.baseurl = "https://letskodeit.teachable.com/"
+        self.lp.driver.get(self.baseurl)
+        self.lp.driver.maximize_window()
+        self.lp.driver.implicitly_wait(10)
+        self.hp=Homepage()
 
-        baseurl = "https://letskodeit.teachable.com/"
-        self.driver.get(baseurl)
 
 
-    @pytest.mark.skip("no test needed")
-    def test_validlogin(self):
+    def test_vlogin(self):
         self.email = "ravinder267@gmail.com"
         self.passwd = "ninja77"
+
         self.lp.valid_login(self.email,self.passwd)
         self.lp.takeScreenshot("loginpage")
         result=self.hp.verify_search_box()

@@ -6,28 +6,24 @@ from pages.courses.javascript_enroll_page import javascript_enroll
 from pages.courses.Checkout_page import Checkout
 import unittest
 import pytest
-from base.webdriverProvider import webdriverProvider
 from time import sleep
 from ddt import ddt, unpack, data
 from utility.getCSVdata import getCSVdata
 
+
+@pytest.mark.usefixtures("onetimesetup","setup")
 @ddt
 class RegisterCourseTests(unittest.TestCase):
 
-    def setUp(self):
-        wp = webdriverProvider()
-        self.driver = wp.getwebdriver()
-        self.hp = Homepage(self.driver)
-        self.lp= loginPage(self.driver)
-        self.courses=Courses(self.driver)
-        self.javas_enroll=javascript_enroll(self.driver)
-        self.checkout=Checkout(self.driver)
-        baseurl = "https://letskodeit.teachable.com/"
-        self.driver.get(baseurl)
+        lp=loginPage()
+        hp=Homepage()
+        courses = Courses()
+        javas_enroll = javascript_enroll()
+        checkout = Checkout()
 
     @data(*getCSVdata(r'C:\Users\ravin\PycharmProjects\python_selenium\testdata\testdata.csv'))
     @unpack
-    def test_click_one_Course(self, coursename ,payment_method, ccNum, ccexp, ccCvc, zip):
+    def test_click_one_Course(self, coursename,payment_method, ccNum, ccexp, ccCvc, zip,onetimesetup):
         self.lp.valid_login("ravinder267@gmail.com","ninja77")
         if coursename == "javascript":
             self.courses.click_javascript_course()

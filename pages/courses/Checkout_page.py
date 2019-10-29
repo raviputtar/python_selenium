@@ -4,11 +4,6 @@ from selenium.webdriver.common.by import By
 
 class Checkout(SeleniumCommon):
 
-    def __init__(self,driver):
-        super().__init__(driver)
-        driver=self.driver
-
-
     dropdown_locator="//select[@name='dropdown_select']"
     cardnumber_locator="// div[ @ id = 'root'] / form // input[ @ name = 'cardnumber']"
 

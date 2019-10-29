@@ -3,9 +3,13 @@ import os
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+
+from base.webdriverProvider import webdriverProvider
+
+
 class SeleniumCommon():
-    def __init__(self,driver):
-        self.driver=driver
+    def __init__(self):
+        self.driver=webdriver.Chrome(executable_path=r"C:\Users\ravin\PycharmProjects\python_selenium\webdrivers\chromedriver_win32\chromedriver.exe")
 
 
     def is_element_present(self,locator_type,locator):
