@@ -27,6 +27,13 @@ class practice(SeleniumCommon):
     def click_login(self):
         self.click_element(By.XPATH,self.login_xpath)
 
+    def factorial(self, n):
+        if n == 1:
+            return 1
+        else:
+            return n * self.factorial(n - 1)
+
+
 
 
 
