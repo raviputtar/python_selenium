@@ -20,3 +20,7 @@ class Homepage(SeleniumCommon):
 
     def click_selenium_java_Course(self):
         self.click_element(By.XPATH,self.webdriver_java_course)
+
+
+    def new_test(self):
+        pass

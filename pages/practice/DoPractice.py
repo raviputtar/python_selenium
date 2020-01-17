@@ -27,3 +27,6 @@ class practice(SeleniumCommon):
     def click_login(self):
         self.click_element(By.XPATH,self.login_xpath)
 
+
+
+

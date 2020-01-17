@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import *
 from selenium.webdriver import ActionChains
+import time
 
 class Checkout(SeleniumCommon):
 
@@ -75,8 +76,11 @@ class Checkout(SeleniumCommon):
 
     def enter_cardnumber(self,cardno):
         self.switch_frame(self._credit_card_frame)
-        self.click_element(By.XPATH,self.cardnumber_locator)
-        self.element_sendkeys(str(cardno),By.XPATH,self.cardnumber_locator)
+        mylist=str(cardno).split()
+        for i in mylist:
+            self.click_element(By.XPATH,self.cardnumber_locator)
+            time.sleep(1)
+            self.element_sendkeys(str(i),By.XPATH,self.cardnumber_locator)
         self.switch_frame_default()
 
     def enter_expiration_date(self,expdate):
@@ -108,10 +112,7 @@ class Checkout(SeleniumCommon):
 
     def enter_creditcard_details(self,method,cardnum,expdate,cvc,postal):
         print("method is:",method)
-        mynymlist=[]
-        mylist=str(cardnum).split()
-        for i in mylist:
-            self.enter_cardnumber(i)
+        self.enter_cardnumber(cardnum)
         self.enter_expiration_date(expdate)
         self.enter_cvc(cvc)
         self.enter_postal(postal)

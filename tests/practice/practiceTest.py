@@ -6,7 +6,6 @@ from pages.practice.DoPractice import practice
 
 class Practicetest(unittest.TestCase):
 
-    @pytest.fixture(autouse=True)
     def classSetup(self):
         self.prac=practice()
 
@@ -15,4 +14,5 @@ class Practicetest(unittest.TestCase):
 
 
 
-
+if __name__ == '__main__':
+    unittest.main()
