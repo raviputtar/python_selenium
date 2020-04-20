@@ -3,7 +3,6 @@ from pages.home.login_page import loginPage
 from pages.home.home_page import Homepage
 import unittest
 import pytest
-from base.webdriverProvider import webdriverProvider
 from  selenium.webdriver.common.by import By
 
 
@@ -30,22 +29,18 @@ from  selenium.webdriver.common.by import By
     # def test_enter_javascript(self):
     #
 class logintest(unittest.TestCase):
-
-
     def setUp(self):
         self.lp=loginPage()
-        self.baseurl = "https://letskodeit.teachable.com/"
-        self.lp.driver.get(self.baseurl)
-        self.lp.driver.maximize_window()
-        self.lp.driver.implicitly_wait(10)
         self.hp=Homepage()
 
+        baseurl = "https://letskodeit.teachable.com/"
+        self.lp.driver.get(baseurl)
 
 
-    def test_vlogin(self):
+    @pytest.mark.skip("no test needed")
+    def test_validlogin(self):
         self.email = "ravinder267@gmail.com"
         self.passwd = "ninja77"
-
         self.lp.valid_login(self.email,self.passwd)
         self.lp.takeScreenshot("loginpage")
         result=self.hp.verify_search_box()
@@ -65,11 +60,11 @@ class logintest(unittest.TestCase):
     #         myresult=False
     #     self.assertTrue(myresult,"message must be different")
     #     self.lp.takeScreenshot("invalid_loginpage")
+    #
+    #
 
+    #self.driver.quit()
     def tearDown(self):
-        self.driver.quit()
+        pass
 
 
-
-if __name__=='__main__':
-    unittest.main(verbosity=2)

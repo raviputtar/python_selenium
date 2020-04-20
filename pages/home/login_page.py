@@ -46,8 +46,3 @@ class loginPage(SeleniumCommon):
 
     def verify_successfull_login(self):
         pass
-
-
-
-
-

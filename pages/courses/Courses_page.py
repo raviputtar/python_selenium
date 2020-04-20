@@ -15,7 +15,3 @@ class Courses(SeleniumCommon):
 
     def click_python_Scratch_course(self):
         self.click_element(By.XPATH,self.python_scratch_Course_locator)
-
-
-
-
