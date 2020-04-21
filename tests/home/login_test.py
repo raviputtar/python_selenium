@@ -4,7 +4,9 @@ from pages.home.home_page import Homepage
 import unittest
 import pytest
 from  selenium.webdriver.common.by import By
-
+import time
+import HtmlTestRunner
+import xmlrunner
 
 # @pytest.mark.usefixtures("OneTimeSetup","setUp")
 # class logintest(unittest.TestCase):
@@ -29,15 +31,20 @@ from  selenium.webdriver.common.by import By
     # def test_enter_javascript(self):
     #
 class logintest(unittest.TestCase):
+
+
+    @classmethod
     def setUp(self):
         self.lp=loginPage()
         self.hp=Homepage()
 
         baseurl = "https://letskodeit.teachable.com/"
         self.lp.driver.get(baseurl)
+        self.lp.driver.maximize_window()
+        self.lp.driver.implicitly_wait(10)
 
 
-    @pytest.mark.skip("no test needed")
+
     def test_validlogin(self):
         self.email = "ravinder267@gmail.com"
         self.passwd = "ninja77"
@@ -46,6 +53,8 @@ class logintest(unittest.TestCase):
         result=self.hp.verify_search_box()
         self.assertTrue(result,"search_bcoz_not_found")
         self.hp.enter_text_search_box("javascript")
+        time.sleep(3)
+
 
 
 
@@ -60,11 +69,13 @@ class logintest(unittest.TestCase):
     #         myresult=False
     #     self.assertTrue(myresult,"message must be different")
     #     self.lp.takeScreenshot("invalid_loginpage")
-    #
-    #
 
-    #self.driver.quit()
+    @classmethod
     def tearDown(self):
         pass
 
 
+
+if __name__ == '__main__':
+    unittest.main(testRunner=xmlrunner.XMLTestRunner(output=out),
+    failfast=False, buffer=False, catchbreak=False, exit=False)

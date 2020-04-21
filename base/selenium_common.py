@@ -1,14 +1,11 @@
 import time
 import os
-import datetime
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 class SeleniumCommon():
 
     driver = webdriver.Chrome(executable_path=r"C:\Users\ravin\PycharmProjects\python_selenium\webdrivers\chromedriver_win32\chromedriver.exe")
-    driver.implicitly_wait(10)
-    driver.maximize_window()
 
     def is_element_present(self,locator_type,locator):
         myelement=self.driver.find_element(locator_type,locator)
@@ -37,21 +34,18 @@ class SeleniumCommon():
             print("element_not_found")
 
     def element_sendkeys(self,data,locator_type,locator):
-        myelement = self.driver.find_element(locator_type,locator)
+        myelement = self.driver.find_element(locator_type, locator)
         if myelement is not None:
             myelement.send_keys(data)
         else:
-            print("element is not found")
-
-
+            print("element is not found: sorry!!")
 
     def takeScreenshot(self, resultmessage):
-        filename = resultmessage + "_" + str(datetime.date.today()) + "_"+".png"
+        filename = resultmessage + "_" + str(round(time.time())) + ".png"
         screenshotDirectory = "Screenshots"
         relativefilename = screenshotDirectory + "\\" + filename
         currentDir = os.path.dirname(__file__)
         destinationfilename = currentDir + "\\" + relativefilename
-        print(destinationfilename)
         destinationDir = os.path.join(currentDir, screenshotDirectory)
 
         try:

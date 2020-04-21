@@ -1,4 +1,4 @@
-import pytest
+
 import unittest
 from pages.practice.DoPractice import practice
 
@@ -6,12 +6,19 @@ from pages.practice.DoPractice import practice
 
 class Practicetest(unittest.TestCase):
 
-    @pytest.fixture(autouse=True)
-    def classSetup(self):
+    def setUp(self):
         self.prac=practice()
 
-    def test_run(self,OneTimeSetupPractice):
-        self.prac.click_dropdown("Honda")
+    def test_run(self):
+        mynum=self.prac.factorial(6)
+        print(mynum)
+
+    def tearDown(self):
+        pass
+
+
+
+
 
 
 

@@ -6,6 +6,7 @@ from pages.courses.javascript_enroll_page import javascript_enroll
 from pages.courses.Checkout_page import Checkout
 import unittest
 import pytest
+import HtmlTestRunner
 
 from time import sleep
 from ddt import ddt, unpack, data
@@ -29,7 +30,7 @@ class RegisterCourseTests(unittest.TestCase):
 
 
     @unittest.skip("demo skip")
-    @data(*getCSVdata(r'C:\Users\ravin\PycharmProjects\python_selenium\testdata\testdata.csv'))
+    @data(*getCSVdata(r'C:\Users\rsingh\PycharmProjects\automationProject\testdata\testdata.csv'))
     @unpack
     def test_click_one_Course(self, coursename ,payment_method, ccNum, ccexp, ccCvc, zip):
         self.lp.valid_login("ravinder267@gmail.com","ninja77")
@@ -55,10 +56,19 @@ class RegisterCourseTests(unittest.TestCase):
         self.javas_enroll.click_enroll_button_top()
         self.checkout.scroll_to_bottom()
         self.checkout.waitfor()
-        self.checkout.enter_creditcard_details("cc",232888888,"23/2",234,201301)
+        self.checkout.enter_creditcard_details("cc","2689765717722898","02 25",302,"201301")
         self.checkout.click_agree_to_terms()
+        self.checkout.wait_for_enroll_button()
+        self.checkout.click_enroll_confirm_button()
+        self.checkout.check_card_Declined_message()
 
-
+#5593420000801409
 
     def tearDown(self):
+        #self.lp.driver.quit()
         pass
+
+testRunner=HtmlTestRunner.HTMLTestRunner(output="htmlreport.html")
+
+if __name__ == '__main__':
+    unittest.main(testRunner=testRunner)
